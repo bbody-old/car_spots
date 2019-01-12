@@ -1,6 +1,6 @@
 # Driveways
 
-![Screenshot of Divvly](https://raw.githubusercontent.com/bbody/divvly/master/screenshot.png)
+![Screenshot of Divvly](https://raw.githubusercontent.com/bbody-old/car_spots/master/public/assets/img/drivewaydemo.jpg)
 
 Driveways is an app for renting out carspaces.
 
