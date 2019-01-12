@@ -1,0 +1,96 @@
+<%= form_for @car_park, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <div id="warning-messages" class="alert alert-danger" role="alert">...</div>
+  <div class="form-group">
+    <%= f.label :name, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :name, :class => 'text-field form-control' %>
+      <p class="help-block">Give it a name that stands out!</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :image, :class => 'text-field form-control' %>
+      <p class="help-block">What does it look like??</p>
+    </div>
+  </div>
+  
+    <div class="form-group">
+      <%= f.label :longitude, :class => 'control-label col-md-2' %>
+      <div class="col-md-10">
+        <%= f.text_field :longitude, :class => 'text-field form-control' %>
+      </div>
+    </div>
+
+  <div class="form-group">
+    <%= f.label :lattitude, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_field :lattitude, :class => 'text-field form-control' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= f.label "Directions", :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_area :address, :class => 'text-field form-control' %>
+      <p class="help-block">Where is it?</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description, :class => 'control-label col-md-2' %>
+    <div class="col-md-10">
+      <%= f.text_area :description, :class => 'text-field form-control' %>
+      <p class="help-block">Tell us a bit about it!</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label "Covered area", :class => 'control-label col-md-4' %>
+      <div class="col-md-10">
+        <%= f.check_box :covered, :class => 'control-label col-md-4' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label "Electrical Socket Access", :class => 'control-label col-md-4' %>
+      <div class="col-md-10">
+        <%= f.check_box :electrical, :class => 'control-label col-md-4' %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <%= f.label "Suitable for larger vehicles", :class => 'control-label col-md-4' %>
+      <div class="col-md-10">
+        <%= f.check_box :large, :class => 'control-label col-md-4' %>
+      </div>
+    </div>
+    </div>
+  <div class="form-group">
+    <div class="col-xs-offset-3 col-xs-9">
+    <label class="checkbox-inline">
+      <input id="tnc" type="checkbox" value="agree">  I agree to the <a href="#">Terms and Conditions</a>.
+    </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class='col-md-offset-2 col-md-10'>
+      <%= f.submit nil, id:"submit-button", :class => 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$("#warning-messages").hide();
+$('#submit-button').click(function(e){
+        if (! $('#tnc').is(':checked')) {
+            $("#warning-messages").text('Please accept our terms and conditions before continuing');
+            $("#warning-messages").show(30);
+            e.preventDefault();
+        }
+        
+    });
+</script>

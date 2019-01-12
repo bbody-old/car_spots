@@ -1,0 +1,36 @@
+<%- model_class = Booking -%>
+<% total = 0 %>
+<% content_for :title do %>
+  Booking Results
+<% end %>
+<% unless @bookings.length == 0 %>
+  <% @bookings.each do |booking| %>
+    <div class="row">
+    <% sub_total = get_price booking %>
+    <% total += sub_total %>
+      <h2><%= link_to booking.car_park.name, booking.car_park %> - $<%= sub_total %>0</h2>
+      <table class="table table-hover table-bordered">
+        <tr>
+          <th>Mon</th>
+          <th>Tues</th>
+          <th>Wed</th>
+          <th>Thurs</th>
+          <th>Fri</th>
+        </tr>
+        <tr>
+          <td><%= raw bool_to_tick booking.mon %></td>
+          <td><%= raw bool_to_tick booking.tues %></td>
+          <td><%= raw bool_to_tick booking.wed %></td>
+          <td><%= raw bool_to_tick booking.thurs %></td>
+          <td><%= raw bool_to_tick booking.fri %></td>
+        </tr>
+      </table>
+      </div>
+  <% end %>
+
+  <h1>Total - $<%= total %>0</h1>
+<% else %>
+  <div class="row">
+    No current bookings.
+  </div>
+<% end %>

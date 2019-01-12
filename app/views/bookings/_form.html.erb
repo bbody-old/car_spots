@@ -1,0 +1,44 @@
+<%= form_for @booking do |f| %>
+  <div class="col-md-8">
+    <h3><i class="fa fa-clock-o"></i> Available Monday-Friday 9-5</h3>
+    
+      <div class="form-group">
+        <table class="table table-hover table-bordered">
+          <tr>
+            <th>Mon</th>
+            <th>Tues</th>
+            <th>Wed</th>
+            <th>Thurs</th>
+            <th>Fri</th>
+          </tr>
+          <tr>
+
+            <% [:mon, :tues, :wed, :thurs, :fri].each do |day| %>
+              <% @booksed = Booking.where(car_park_id: @car_park.id, day => true) %>
+              <% if @booksed.length > 0 %>
+                  <% if has_current @booksed %>
+                    <td class="success"><%= f.check_box(day, {checked: true}) %></td>
+                  <% else %>
+                    <td class="danger">X</td>
+                  <% end %>
+
+              <% else %>
+                <td class="info"><%= f.check_box(day) %></td>
+              <% end %>
+            <% end %>
+
+          </tr>
+        </table>
+      </div>
+
+    
+  </div>
+  <div class="col-md-2 text-center">
+  <%= f.hidden_field(:car_park_id, value: @booking.car_park.id) %>
+  <% unless current_user.nil? %>
+    <%= f.submit("Book Now", class: "btn btn-success" ) %>
+  <% else %>
+    <%= link_to("Login", new_user_session_path, class: "btn btn-success") %>
+  <% end %>
+  </div>
+<% end %>
